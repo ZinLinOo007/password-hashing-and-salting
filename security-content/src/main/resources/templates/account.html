@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/mainLayout :: layout(~{::main})}" lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+  <main role="main">
+
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h3>Account Information</h3>
+          <h4>Logged User:<span sec:authentication="name"></span></h4>
+          <hr>
+          <h3>Roles</h3>
+          <ul class="list-group" th:each="role : ${#authentication.authorities}">
+            <li class="list-group-item" th:text="${role}"></li>
+          </ul>
+        </div>
+      </div>
+
+    <hr>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Account Information</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Security Context Holder Strategy</h5>
+            <div class="card-text">
+              <h5 th:text="${securityContextHolderStrategy}"></h5>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Main Thread Information</h4>
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <h5>SecurityContext HashCode:: <span th:text="${mainHashCode}"></span></h5>
+              <h5>AuthenticationName Name:: <span th:text="${mainName}"></span></h5>
+              <h5>User Name:: <span th:text="${mainUsername}"></span></h5>
+
+              <ul class="list-group" th:each="authority : ${mainAuthorities}">
+                <li class="list-group-item" th:text="${authority}"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Child Thread Information</h4>
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <h5>SecurityContext HashCode:: <span th:text="${childHashCode}"></span></h5>
+              <h5>AuthenticationName Name:: <span th:text="${childName}"></span></h5>
+              <h5>User Name:: <span th:text="${childUsername}"></span></h5>
+
+              <ul class="list-group" th:each="authority : ${childAuthorities}">
+                <li class="list-group-item" th:text="${authority}"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

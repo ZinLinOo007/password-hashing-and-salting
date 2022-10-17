@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html th:replace="layout/mainLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-4">
+        <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+
+          <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" id="username" class="form-control"
+            th:field="*{userName}" th:classappend="${#fields.hasErrors('userName')} ? 'is-invalid'">
+            <small class="invalid-feedback" th:errors="*{userName}"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" id="password" class="form-control"
+                   th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
+            <small class="invalid-feedback" th:errors="*{password}"></small>
+          </div>
+
+
+          <div class="form-group">
+            <label for="repeatedPassword">Repeated Password</label>
+            <input type="text" id="repeatedPassword" class="form-control"
+                   th:field="*{repeatedPassword}" th:classappend="${#fields.hasErrors('repeatedPassword')} ? 'is-invalid'">
+            <small class="invalid-feedback" th:errors="*{repeatedPassword}"></small>
+          </div>
+          <input type="submit" value="Signup" class="btn btn-primary btn-block">
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
